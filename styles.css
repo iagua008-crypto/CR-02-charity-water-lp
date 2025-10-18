@@ -23,13 +23,43 @@ Fonts:
   This CSS uses the provided color palette and beginner-friendly styles.
 */
 
-/* Set up the main font and background color for the whole page */
-body {
-  background-color: #f4f8fb; /* Soft light blue for a fresh look */
-  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+/* Simple reset so layout is predictable for beginners */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #222;
+}
+
+/* Try to use a locally installed Proxima Nova if available.
+   This does NOT include the font files — it only uses the font if installed on the system. */
+@font-face {
+  font-family: "Proxima Nova Local";
+  src: local("Proxima Nova"), local("ProximaNova");
+  font-weight: 300 800;
+  font-style: normal;
+}
+
+/* Color palette variables */
+:root {
+  --light-blue: #8BD1CB;  /* background */
+  --green: #4FCB53;
+  --orange: #FF902A;      /* primary CTA */
+  --red: #F5402C;
+  --dark-green: #159A48;
+  --pink: #F16061;
+  --brand: #08314a;       /* deep blue for headings */
+  --text: #053940;        /* readable body text */
+  --muted: rgba(5,57,56,0.85);
+}
+
+/* Page background and base typography */
+body {
+  font-family: "Proxima Nova Local", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--light-blue);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
 }
 
 /* Add a slight shadow and rounded corners to each section for depth */
@@ -41,18 +71,48 @@ section {
   padding: 24px 16px;
 }
 
+/* Header container using flexbox to center content.
+   Flexbox is simple and easy for beginners. */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: rgba(255,255,255,0.9); /* subtle contrast on the light-blue page */
+  border-bottom: 2px solid rgba(8,49,74,0.06);
+}
+
+/* Big, stylish company name.
+   Keep styles simple and well-commented for learners. */
+.brand {
+  /* Use a larger font size for the main title */
+  font-size: 2rem; /* about 36px on most screens */
+  font-weight: 700;   /* bold weight */
+  color: var(--brand);
+  margin-bottom: 0.25rem; /* small space to the tagline */
+  text-transform: none; /* keep original case */
+}
+
+/* Tagline styles: smaller and lighter */
+.tagline {
+  font-size: 0.95rem;
+  color: var(--dark-green);
+  opacity: 0.95;
+}
+
 /* Hero Section Styles */
 .hero {
   position: relative; /* Needed for overlay */
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--brand);
+
   /* Set a background image that covers the whole section */
   background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
   background-size: cover;      /* Make the image cover the whole area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat;
-  color: #fff;                 /* White text for contrast */
-  text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
-  border-radius: 0 0 16px 16px; /* Only round bottom corners */
 
   /* Add a dark overlay for better text readability */
   /* This uses a simple linear-gradient overlay */
@@ -62,18 +122,18 @@ section {
 
 /* Make the headline bold and modern */
 .hero h1 {
-  font-size: 2.5em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 /* Style the subheadline */
 .hero p {
-  font-size: 1.2em;
-  margin-top: 0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  font-size: 1rem;
+  max-width: 48rem; /* keeps the line length comfortable for reading */
+  margin: 0 auto;
+  opacity: 0.95;
 }
 
 /* Story Section Styles */
@@ -93,17 +153,18 @@ h2 {
 
 /* Call-to-Action Section Styles */
 .call-to-action {
-  background-color: #FFC907; /* Primary Yellow */
-  color: #222;
+  padding: 1.5rem;
   text-align: center;
-  padding: 30px 20px;
 }
 
 /* Style the impact story image */
 .impact-image {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
+  width: 280px;
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+  border: 2px solid rgba(0,0,0,0.06);
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
 }
@@ -111,24 +172,23 @@ h2 {
 /* Donate Button Styles */
 .donate-button {
   display: inline-block;
-  background-color: #4FCB53; /* Green */
-  color: #fff;
-  padding: 14px 32px;
-  text-decoration: none;
+  margin-top: 0.75rem;
+  background: var(--orange);
+  color: white;
+  padding: 0.65rem 1rem;
   border-radius: 6px;
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-top: 18px;
-  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
-  transition: background 0.3s, transform 0.2s;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
 /* Change button color when hovered */
-.donate-button:hover {
-  background-color: #159A48; /* Dark Green */
-  transform: translateY(-2px) scale(1.04); /* Slight lift */
+.donate-button:hover,
+.donate-button:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  outline: none;
 }
 
 /* Add some spacing between sections */
@@ -146,18 +206,18 @@ section {
 @media (max-width: 600px) {
   /* Make hero section padding smaller on small screens */
   .hero {
-    padding: 32px 8px;
+    padding: 1.25rem 0.75rem;
     font-size: 1em;
   }
 
   /* Make headline font size smaller so it fits on small screens */
   .hero h1 {
-    font-size: 1.4em;
+    font-size: 1.25rem;
   }
 
   /* Make subheadline font size smaller */
   .hero p {
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   /* Make story and call-to-action sections have less padding */
@@ -174,8 +234,8 @@ section {
   }
 
   .impact-image {
-    width: 90%;    /* Make image take up most of the width */
-    max-width: 220px;
+    width: 100%;    /* Make image take up most of the width */
+    max-width: 360px;
   }
 }
 
@@ -184,7 +244,7 @@ section {
   /* Show image and text side by side in the impact story */
   .impact-content {
     display: flex;           /* Place items in a row */
-    align-items: center;     /* Vertically center items */
+    align-items: flex-start;     /* Vertically center items */
     justify-content: center; /* Center the whole group */
     gap: 28px;               /* Space between image and text */
     text-align: left;
@@ -193,6 +253,15 @@ section {
   }
 
   .impact-image {
-    width: 300px;
+    width: 280px;
   }
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 480px) {
+  .brand { font-size: 1.5rem; }
+  .hero h1 { font-size: 1.25rem; }
+  .hero { padding: 1.25rem 0.75rem; }
+  .impact-content { flex-direction: column; align-items: center; }
+  .impact-image { width: 100%; max-width: 360px; }
 }

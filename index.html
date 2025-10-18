@@ -1,47 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nonprofit Landing Page</title>
+  <style>
+    /* Brand Colors */
+    :root {
+      --light-blue: #8BD1CB;
+      --green: #4FCB53;
+      --orange: #FF902A;
+      --red: #F5402C;
+      --dark-green: #159A48;
+      --pink: #F16061;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header.hero {
+      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover; /* replaced with lake image */
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+      position: relative; /* allow absolute positioning for org-name */
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      background-color: rgba(21, 154, 72, 0.8);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    /* CTA button styles for the hero (moved button) */
+    .hero .cta-button {
+      background-color: var(--red);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease, transform 120ms ease, box-shadow 120ms ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .hero .cta-button:hover,
+    .hero .cta-button:focus {
+      background-color: var(--pink);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    /* Organization name placed in the top-left corner (larger font) */
+    .org-name {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      color: white;
+      background: rgba(0,0,0,0.36);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 800;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 1.25rem; /* increased size */
+    }
+
+    /* Responsive fallback so the org name flows above content on small screens */
+    @media (max-width: 480px) {
+      .org-name {
+        position: static;
+        display: inline-block;
+        margin-bottom: 12px;
+        font-size: 1.05rem;
+      }
+      header.hero {
+        padding-top: 12px;
+      }
+    }
+
+    section.story {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 60px 20px;
+      background-color: var(--light-blue);
+      flex-wrap: wrap;
+    }
+
+    .story img {
+      width: 400px;
+      border-radius: 12px;
+      margin: 20px;
+    }
+
+    .story-content {
+      max-width: 500px;
+    }
+
+    .story-content h2 {
+      color: var(--dark-green);
+    }
+
+    section.cta {
+      background-color: var(--orange);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    /* keep existing .cta button rule placeholder in case other pages use it */
+    .cta button {
+      background-color: var(--red);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .cta button:hover {
+      background-color: var(--pink);
+    }
+
+    /* Footer styles (removed as per request) */
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <header class="hero">
+    <!-- Organization name in top-left corner -->
+    <a class="org-name" href="/" aria-label="charity: water — home">charity: water</a>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+    <h1>Give hope. Track every drop.</h1>
+    <p>Know your impact. Feel good about it. And be part of a global movement that’s changing lives.</p>
+    <!-- Moved CTA button (now directly under the subheadline) -->
+    <button class="cta-button" onclick="location.href='#donate'">Donate Now</button>
+  </header>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
-        </div>
-    </section>
+  <section class="story">
+    <div class="story-content">
+      <h2>Meet Maria: A Story of Hope</h2>
+      <p>Maria’s life changed forever when our volunteers brought education and clean water to her village. With your help, we can empower more families just like hers.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1554188248-986adbb73be0?auto=format&fit=crop&w=800&q=80" alt="Story image">
+  </section>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+  <section class="cta" id="donate">
+    <!-- Content removed as requested: "Your Support Matters" and the supporting paragraph -->
+  </section>
+
+  <!-- Footer removed -->
 </body>
 </html>
